@@ -1,4 +1,4 @@
-// GrooveScript to trigger server-side script execution
+// GrooveScript to trigger server-side script execution // Musthafa
 
 // Define server API details
 const serverUrl = 'https://your-server-api-endpoint'; // Replace with your server's API endpoint
