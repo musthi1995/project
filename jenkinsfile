@@ -1,0 +1,93 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Get Current Date and Time') {
+            steps {
+                script {
+                    // Get the current date and time
+                    def currentDateTime = new Date()
+                    
+                    // Format the current date and time
+                    def formattedDateTime = currentDateTime.format('yyyy-MM-dd HH:mm:ss')
+                    
+                    // Print the current date and time
+                    echo "Current Date and Time: ${formattedDateTime}"
+                }
+            }
+        }
+
+        stage('Calculate Time Difference') {
+            steps {
+                script {
+                    // Define the start time
+                    def startTime = new Date()
+                    
+                    // Simulate some processing
+                    sleep time: 10, unit: 'SECONDS' // Sleep for 10 seconds
+                    
+                    // Define the end time
+                    def endTime = new Date()
+                    
+                    // Calculate the difference in milliseconds
+                    def timeDifferenceMillis = endTime.time - startTime.time
+                    
+                    // Convert milliseconds to seconds
+                    def timeDifferenceSeconds = timeDifferenceMillis / 1000
+                    
+                    // Print the time difference
+                    echo "Processing time: ${timeDifferenceSeconds} seconds"
+                }
+            }
+        }
+
+        stage('Format Specific Date') {
+            steps {
+                script {
+                    // Create a specific date object (e.g., the first day of 2025)
+                    def specificDate = Date.parse('yyyy-MM-dd', '2025-01-01')
+                    
+                    // Format the specific date
+                    def formattedSpecificDate = specificDate.format('dd MMMM yyyy')
+                    
+                    // Print the formatted date
+                    echo "Formatted Specific Date: ${formattedSpecificDate}"
+                }
+            }
+        }
+        
+        stage('Handle Timestamps') {
+            steps {
+                script {
+                    // Get the current timestamp
+                    def currentTimestamp = new Date().time
+                    
+                    // Print the current timestamp
+                    echo "Current Timestamp (milliseconds since epoch): ${currentTimestamp}"
+                    
+                    // Add 7 days (7 * 24 hours) to the current timestamp
+                    def sevenDaysInMillis = 7 * 24 * 60 * 60 * 1000
+                    def futureTimestamp = currentTimestamp + sevenDaysInMillis
+                    
+                    // Convert the future timestamp to a Date object
+                    def futureDate = new Date(futureTimestamp)
+                    
+                    // Format the future date
+                    def formattedFutureDate = futureDate.format('yyyy-MM-dd HH:mm:ss')
+                    
+                    // Print the future date
+                    echo "Future Date and Time (7 days later): ${formattedFutureDate}"
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully.'
+        }
+        failure {
+            echo 'Pipeline failed. Please check the logs for details.'
+        }
+    }
+}
