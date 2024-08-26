@@ -1,1 +1,17 @@
-
+- hosts: all
+   remote_user: ec2-user
+   become: yes
+   tasks:
+    - name: im going to install httpd
+      yum:
+       name: httpd
+       state: latest
+    - name: im going to start httpd
+      service:
+       name: httpd
+       state: started
+    - name: Copy file with owner and permissions
+      copy:
+       src: ./index.html
+       dest: /var/www/html/
+       mode: '0777'
