@@ -5,7 +5,7 @@ FROM httpd:latest
 # COPY httpd.conf /usr/local/apache2/conf/httpd.conf
 
 # Copy your static website files (if any)
-COPY ./public-html/ /usr/local/apache2/htdocs/
+COPY ./public-html /usr/local/apache2/htdocs/
 
 # Expose the port on which Apache will run
 EXPOSE 80
