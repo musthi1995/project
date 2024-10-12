@@ -13,11 +13,18 @@ pipeline {
         }
         stage("deploy") {
             steps {
+                script {
+                    // Build the Docker image using Dockerfile1
+                    sh 'docker build -t my apps -f Dockerfile1 .'
+
+                    // Optionally run the Docker container
+                    // sh 'docker run -d my apps'
+                }
                 echo 'Deploying the application...'
             }
         }
     }
-   post {
+    post {
         success {
             echo 'Pipeline has Passed.'
         }
