@@ -14,11 +14,11 @@ pipeline {
         stage("deploy") {
             steps {
                 script {
-                    // Build the Docker image using Dockerfile1
-                    sh 'docker build -t my apps -f dockerfile1 .'
+                    // Build the Docker image using dockerfile1
+                    sh 'docker build -t my_apps -f dockerfile1 .'
 
                     // Optionally run the Docker container
-                    // sh 'docker run -d my apps'
+                    // sh 'docker run -d my_apps'
                 }
                 echo 'Deploying the application...'
             }
