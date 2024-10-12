@@ -1,11 +1,5 @@
 # Use the official HTTPD image as the base image
 FROM httpd:latest
 
-# Copy your custom configuration file (if any)
-# COPY httpd.conf /usr/local/apache2/conf/httpd.conf
-
-# Copy your static website files (if any)
-COPY ./public-html /usr/local/apache2/htdocs/
-
 # Expose the port on which Apache will run
 EXPOSE 80
